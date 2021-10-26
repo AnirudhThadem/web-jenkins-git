@@ -9,7 +9,7 @@ pipeline {
 
             steps {
                 withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn clean install'
+                    bat 'mvn clean install'
 
                 }
             }
@@ -19,7 +19,7 @@ pipeline {
 
             steps {
                 withMaven(maven : 'maven_3_5_0') {
-                    sh 'mvn test'
+                    bat 'mvn test'
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
 
             steps {
                 withMaven(maven : 'maven_3_5_0') {
-	  sh 'mvn package'
+	  bat'mvn package'
 	deploy adapters: [tomcat8(credentialsId: 'df450cbb-11fb-48e5-b2a7-51e2ea0d0f39', path: '', url: 'http://localhost:8081/')], contextPath: 'webgit', war: '**/*.war'
  }
             }
